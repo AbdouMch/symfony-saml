@@ -18,6 +18,17 @@ services:
       - '8080:8080'
     networks:
       - dev
+  www:
+    build: php
+    container_name: www_saml_tuto
+    ports:
+      - "8741:80"
+    volumes:
+      - ./php/vhosts:/etc/apache2/sites-enabled
+      - ../:/var/www
+    restart: always
+    networks:
+      - dev
 networks:
   dev:
 
