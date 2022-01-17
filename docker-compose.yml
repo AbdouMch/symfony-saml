@@ -1,21 +1,39 @@
-version: '3'
-
+version: "3.8"
 services:
-###> doctrine/doctrine-bundle ###
   database:
-    image: postgres:${POSTGRES_VERSION:-13}-alpine
+    image: postgres
+    container_name: db_saml_tuto
+    restart: always
+    volumes:
+      - db-data:/var/lib/postgres
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-app}
       # You should definitely change the password in production
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-ChangeMe}
       POSTGRES_USER: ${POSTGRES_USER:-symfony}
+    networks:
+      - dev
+  adminer:
+    image: adminer
+    container_name: db_saml_tuto_adminer
+    restart: always
+    ports:
+      - '8080:8080'
+    networks:
+      - dev
+  www:
+    build: docker/php
+    container_name: www_saml_tuto
+    ports:
+      - "8741:80"
     volumes:
-      - db-data:/var/lib/postgresql/data:rw
-      # You may use a bind-mounted host directory instead, so that it is harder to accidentally remove the volume and lose all your data!
-      # - ./docker/db/data:/var/lib/postgresql/data:rw
-###< doctrine/doctrine-bundle ###
+      - ./docker/php/vhosts:/etc/apache2/sites-enabled
+      - ./:/var/www
+    restart: always
+    networks:
+      - dev
+networks:
+  dev:
 
 volumes:
-###> doctrine/doctrine-bundle ###
   db-data:
-###< doctrine/doctrine-bundle ###
