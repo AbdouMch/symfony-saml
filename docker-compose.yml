@@ -3,15 +3,11 @@ services:
   idp:
     image: kenchan0130/simplesamlphp
     container_name: idp
-    domainname: www.saml.idp.com
     ports:
       - "8742:8080"
-    environment:
-      SIMPLESAMLPHP_SP_ENTITY_ID: http://www.saml.sp.com
-      SIMPLESAMLPHP_SP_ASSERTION_CONSUMER_SERVICE: http://www.saml.sp.com/saml/acs
-      SIMPLESAMLPHP_SP_SINGLE_LOGOUT_SERVICE: http://www.saml.sp.com/saml/logout
     volumes:
       - ./docker/simpleSaml/authsources.php:/var/www/simplesamlphp/config/authsources.php
+      - ./docker/simpleSaml/saml20-sp-remote.php:/var/www/simplesamlphp/metadata/saml20-sp-remote.php
     networks:
       - dev
   database:
@@ -38,7 +34,6 @@ services:
   www:
     build: docker/php
     container_name: www_saml_tuto
-    domainname: www.saml.sp.com
     ports:
       - "8741:80"
     volumes:

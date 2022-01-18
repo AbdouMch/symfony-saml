@@ -7,11 +7,11 @@ $config = array(
         'exampleauth:UserPass',
         'user1:password' => [
             'uid' => ['user1'],
-            'roles' => ['sub_admin'],
+            'roles' => ['ROLE_ADMIN'],
         ],
         'user2:password' => [
             'uid' => ['user2'],
-            'roles' => ['admin'],
+            'roles' => ['ROLE_USER'],
         ],
     ),
 );

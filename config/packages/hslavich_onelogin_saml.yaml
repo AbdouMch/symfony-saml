@@ -14,5 +14,7 @@ hslavich_onelogin_saml:
             url: "%env(BACKEND_BASE_URL)%/saml/acs"
             binding: "%env(SAML_ACS_BINDING)%"
         singleLogoutService:
-            url: "%env(SAML_SINGLE_LOGOUT_SERVICE_URL)%"
+            url: "%env(BACKEND_BASE_URL)%/saml/logout"
             binding: "%env(SAML_SP_SINGLE_LOGOUT_SERVICE_BINDING)%"
+        privateKey: "%env(SAML_SP_PRIVATE_KEY)%"
+        x509cert: "%env(SAML_SP_CERT)%"
