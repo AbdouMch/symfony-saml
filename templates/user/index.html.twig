@@ -9,12 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Hello {{ user.username }}! ✅</h1>
 
-    This friendly message is coming from:
+    You are granted by:
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/Users/amchaaya/Desktop/Talan/saml-tuto/src/Controller/UserController.php'|file_link(0) }}">src/Controller/UserController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/Users/amchaaya/Desktop/Talan/saml-tuto/templates/user/index.html.twig'|file_link(0) }}">templates/user/index.html.twig</a></code></li>
+        {% for role in user.roles %}
+            <li> {{ role }} </li>
+        {% endfor %}
     </ul>
 </div>
 {% endblock %}
