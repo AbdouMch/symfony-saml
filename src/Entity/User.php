@@ -2,10 +2,11 @@
 
 namespace App\Entity;
 
+use Hslavich\OneloginSamlBundle\Security\User\SamlUserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-class User implements UserInterface
+class User implements UserInterface, SamlUserInterface
 {
     private $username;
 
@@ -82,5 +83,11 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function setSamlAttributes(array $attributes)
+    {
+        $this->username = $attributes['uid'][0];
+        $this->roles = array_values($attributes['roles']);
     }
 }
