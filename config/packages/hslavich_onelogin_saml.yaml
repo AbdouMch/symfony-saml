@@ -7,7 +7,7 @@ hslavich_onelogin_saml:
         singleLogoutService:
             url: "%env(SAML_SINGLE_LOGOUT_SERVICE_URL)%"
             binding: "%env(SAML_SINGLE_LOGOUT_SERVICE_BINDING)%"
-        x509cert: "%env(SAML_APP_CERT)%"
+        x509cert: "%env(file:resolve:SAML_APP_CERT)%"
     sp:
         entityId: "%env(BACKEND_BASE_URL)%/saml/metadata"
         assertionConsumerService:

@@ -21,3 +21,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> hslavich/oneloginsaml-bundle ###
+/config/cert/*.crt
+###< hslavich/oneloginsaml-bundle ###
