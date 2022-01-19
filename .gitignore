@@ -21,3 +21,8 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> hslavich/oneloginsaml-bundle ###
+# for local version
+/config/cert/saml_idp.crt
+###< hslavich/oneloginsaml-bundle ###
